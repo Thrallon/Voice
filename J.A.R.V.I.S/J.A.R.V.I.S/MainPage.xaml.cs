@@ -148,6 +148,7 @@ namespace J.A.R.V.I.S
             if (msg == 0)
             {
                 con = new Windows.Media.SpeechRecognition.SpeechRecognitionListConstraint(responses, "yesOrNo");
+
             }
             else if (msg == 1)
             {
@@ -156,7 +157,7 @@ namespace J.A.R.V.I.S
                 con = new Windows.Media.SpeechRecognition.SpeechRecognitionListConstraint(responses, "yesOrNo");
             }else if (msg == 2)
             {
-                responses = new string[] { "A message" };
+                responses = new string[] { "Good morning" };
                 con = new Windows.Media.SpeechRecognition.SpeechRecognitionListConstraint(responses, "yesOrNo");
             }
 
@@ -187,7 +188,7 @@ namespace J.A.R.V.I.S
                     Name = speechRecognitionResult.Text;
                     //start2();
                     findContact();
-
+                    return;
                 }
                 else
                 {
@@ -211,7 +212,7 @@ namespace J.A.R.V.I.S
                 }
             }else if(msg == 2)
             {
-                if (speechRecognitionResult.Text != "")
+                if (speechRecognitionResult.Text.Contains ( ""))
                 {
                     Message = speechRecognitionResult.Text;
                     ComposeEmail(contactt, Message);
@@ -270,7 +271,7 @@ namespace J.A.R.V.I.S
             var synth = new Windows.Media.SpeechSynthesis.SpeechSynthesizer();
 
             // Generate the audio stream from plain text.
-            SpeechSynthesisStream stream = await synth.SynthesizeTextToStreamAsync("Please say meassage to be sent");
+            SpeechSynthesisStream stream = await synth.SynthesizeTextToStreamAsync("Please say message to be sent");
 
             // Send the stream to the media object.
             mediaElement.SetSource(stream, stream.ContentType);

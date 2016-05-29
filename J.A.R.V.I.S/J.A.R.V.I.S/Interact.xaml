@@ -1,22 +1,30 @@
 ﻿<Page
+    
     x:Class="J.A.R.V.I.S.Interact"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:J.A.R.V.I.S"
+    xmlns:gif="using:XamlAnimatedGif"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource JumpListDefaultEnabledBackground}">
+        
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            
+            <RowDefinition Height="117*"/>
+            <RowDefinition Height="43*"/>
+            <RowDefinition Height="160*"/>
         </Grid.RowDefinitions>
-        <MediaElement Name="mediaElement" Margin="10,406.667,349,19" Grid.Row="2"></MediaElement>
-        <TextBlock x:Name="textBox" Grid.Row="0" HorizontalAlignment="Center" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center"  FontStyle="Italic" Foreground="#FFFF0202" FontSize="20" SelectionHighlightColor="#00000000"/>
-        <TextBlock x:Name="textBox1" Grid.Row="1" HorizontalAlignment="Center" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Foreground="#FFD31906" FontStyle="Italic" FontSize="20"/>
-        <TextBlock x:Name="textBox2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="J.A.R.V.I.S SAYS" VerticalAlignment="Top" FontSize="48" Foreground="#FF3EFF06" SelectionHighlightColor="Black" FontStyle="Italic" FontWeight="SemiLight"/>
-        <TextBlock x:Name="textBox3" HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" Text="USER SAYS" VerticalAlignment="Top"  FontSize="48" Foreground="#FF3EFF06"  SelectionHighlightColor="Black" FontStyle="Italic" FontWeight="SemiLight"/>
+        <Image x:Name="image" gif:AnimationBehavior.SourceUri="Assets/Ordis7.gif"  Grid.Row="0" Grid.RowSpan="3"  Stretch="Fill" />
+        <MediaElement Name="mediaElement" Margin="10,407,349,-88" Grid.Row="2"></MediaElement>
+        <TextBlock x:Name="textBox" Grid.Row="0" HorizontalAlignment="Center" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center"  FontStyle="Normal" Foreground="Black" FontSize="20" SelectionHighlightColor="#00000000" Margin="146,147,146,59.721"/>
+        <TextBlock x:Name="textBox1" Grid.Row="2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Foreground="Black" FontStyle="Normal" FontSize="20" Margin="146,147,146,146"/>
+
+        <TextBlock x:Name="textBox3" HorizontalAlignment="Center" Grid.Row="2" TextWrapping="Wrap" Text="USER SAYS" VerticalAlignment="Top"  FontSize="48" Foreground="Black"  SelectionHighlightColor="Black" FontStyle="Normal" FontWeight="SemiLight" Margin="68,0"/>
+        <TextBlock x:Name="textBox2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="J.A.R.V.I.S SAYS" VerticalAlignment="Top" FontSize="48" Foreground="Black" SelectionHighlightColor="Black" FontStyle="Normal" FontWeight="SemiLight" Margin="27,10,25,0" Grid.Row="1"/>
 
     </Grid>
 </Page>

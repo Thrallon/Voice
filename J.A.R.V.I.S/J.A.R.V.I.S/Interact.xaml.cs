@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -31,11 +32,14 @@ namespace J.A.R.V.I.S
         public int msg;
         Contact contactt;
         Windows.Media.SpeechRecognition.SpeechRecognitionListConstraint con;
+        Windows.Media.SpeechRecognition.SpeechRecognizer recon;
 
         public Interact()
         {
             this.InitializeComponent();
 
+
+            recon = new Windows.Media.SpeechRecognition.SpeechRecognizer();
             mediaElement.MediaEnded += MediaElement_MediaEnded;
 
             Start2();
@@ -54,9 +58,10 @@ namespace J.A.R.V.I.S
                 textBox.Text = "Welcome";
                 // Send the stream to the media object.
                 mediaElement.SetSource(stream, stream.ContentType);
-                mediaElement.Play();
                 msg = 0;
-                Start3();
+                mediaElement.Play();
+               // jarvis();
+                
             }
             else if (Message.Equals("What time is it"))
             {
@@ -67,23 +72,23 @@ namespace J.A.R.V.I.S
                 SpeechSynthesisStream stream = await synth.SynthesizeTextToStreamAsync("The time is" + thisDay);
                 textBox.Text = "The time is" + thisDay;
                 // Send the stream to the media object.
-                mediaElement.SetSource(stream, stream.ContentType);
+                mediaElement.SetSource(stream, stream.ContentType);msg = 0;
                 mediaElement.Play();
-                msg = 0;
-                Start3();
+                
+                //Start3();
             }
             else if (Message.Equals("Where are you from"))
             {//Where are you from//Who are your parents //Do you want to send email//bye
                 // The object for controlling the speech synthesis engine (voice).
                 var synth = new Windows.Media.SpeechSynthesis.SpeechSynthesizer();
                 // Generate the audio stream from plain text.
-                SpeechSynthesisStream stream = await synth.SynthesizeTextToStreamAsync("I was created at Hackathon");
-                textBox.Text = "I was created at Hackathon";
+                SpeechSynthesisStream stream = await synth.SynthesizeTextToStreamAsync("I come from the small vilage of Alkmini");
+                textBox.Text = "I come from the small vilage of Alkmini";
                 // Send the stream to the media object.
-                mediaElement.SetSource(stream, stream.ContentType);
+                mediaElement.SetSource(stream, stream.ContentType);msg = 0;
                 mediaElement.Play();
-                msg = 0;
-                Start3();
+                
+                //Start3();
             }
             else if (Message.Equals("Who are your Creators"))
             {
@@ -93,10 +98,23 @@ namespace J.A.R.V.I.S
                 SpeechSynthesisStream stream = await synth.SynthesizeTextToStreamAsync("My Creators are Jason and Antony");
                 textBox.Text = "My Creators are Jason and Antony";
                 // Send the stream to the media object.
-                mediaElement.SetSource(stream, stream.ContentType);
+                mediaElement.SetSource(stream, stream.ContentType);msg = 0;
                 mediaElement.Play();
-                msg = 0;
-                Start3();
+                
+               // Start3();
+            }
+            else if (Message.Equals("What is your form"))
+            {
+                // The object for controlling the speech synthesis engine (voice).
+                var synth = new Windows.Media.SpeechSynthesis.SpeechSynthesizer();
+                // Generate the audio stream from plain text.
+                SpeechSynthesisStream stream = await synth.SynthesizeTextToStreamAsync("My form is binary");
+                textBox.Text = "My Creators are Jason and Antony";
+                // Send the stream to the media object.
+                mediaElement.SetSource(stream, stream.ContentType); msg = 0;
+                mediaElement.Play();
+
+                // Start3();
             }
             else if (Message.Equals("Jarvis call my girlfriend"))
             {
@@ -106,22 +124,21 @@ namespace J.A.R.V.I.S
                 SpeechSynthesisStream stream = await synth.SynthesizeTextToStreamAsync("Which one");
                 textBox.Text = "Which one";
                 // Send the stream to the media object.
-                mediaElement.SetSource(stream, stream.ContentType);
+                mediaElement.SetSource(stream, stream.ContentType); msg = 0;
                 mediaElement.Play();
-                msg = 0;
-                Start3();
+               
+                //Start3();
             }
             else if (Message.Equals("Bye"))
             {
                 // The object for controlling the speech synthesis engine (voice).
                 var synth = new Windows.Media.SpeechSynthesis.SpeechSynthesizer();
                 // Generate the audio stream from plain text.
-                SpeechSynthesisStream stream = await synth.SynthesizeTextToStreamAsync("My Creators are Jason and Antony");
+                SpeechSynthesisStream stream = await synth.SynthesizeTextToStreamAsync("GoodBye");
                 // Send the stream to the media object.
                 mediaElement.SetSource(stream, stream.ContentType);
                 mediaElement.Play();
-                msg = 3;
-                Frame.Navigate(typeof(MainPage));
+                msg = 3;             
             }
 
 
@@ -145,7 +162,7 @@ namespace J.A.R.V.I.S
 
         private async void MediaElement_MediaEnded(object sender, RoutedEventArgs e)
         {
-            var speechRecognizer = new Windows.Media.SpeechRecognition.SpeechRecognizer();
+            var speechRecognizer = recon;
 
 
             string[] responses = { "George", "John", "Tony", "Jason", "Antony", "Gabriel" };
@@ -154,18 +171,28 @@ namespace J.A.R.V.I.S
 
             if (msg == 0)
             {
-                con = new Windows.Media.SpeechRecognition.SpeechRecognitionListConstraint(responses, "yesOrNo");
+
+
+                Start3();
+                return;
+
+                //responses = new string[]{ "Hello","What time is it", "Where are you from"
+                  //  ,"Jarvis call my girlfriend","Who are your Creators","Bye","What is your form","bye" };
+                //con = new Windows.Media.SpeechRecognition.SpeechRecognitionListConstraint(responses, "yesOrNo");
             }
             else if (msg == 1)
             {
-                responses = new string[]{ "Hello","What time is it", "I was created at Hackathon"
-                    ,"Jarvis call my girlfriend","Who are your Creators","Bye" };
+                responses = new string[]{ "Hello","What time is it", "Where are you from"
+                    ,"Jarvis call my girlfriend","Who are your Creators","Bye","What is your form","bye" };
                 con = new Windows.Media.SpeechRecognition.SpeechRecognitionListConstraint(responses, "yesOrNo");
             }
             else if (msg == 2)
             {
                 responses = new string[] { "A message" };
                 con = new Windows.Media.SpeechRecognition.SpeechRecognitionListConstraint(responses, "yesOrNo");
+            }else if(msg == 3)
+            {
+                Frame.Navigate(typeof(MainPage));
             }
 
 
@@ -187,13 +214,22 @@ namespace J.A.R.V.I.S
             // Compile the dictation grammar by default.
             await speechRecognizer.CompileConstraintsAsync();
 
+            await Task.Delay(1000);
+
             // Start recognition.
-            Windows.Media.SpeechRecognition.SpeechRecognitionResult speechRecognitionResult = await speechRecognizer.RecognizeWithUIAsync();
+            Windows.Media.SpeechRecognition.SpeechRecognitionResult speechRecognitionResult = await speechRecognizer.RecognizeAsync();
+
+            if (speechRecognitionResult.Status == Windows.Media.SpeechRecognition.SpeechRecognitionResultStatus.Success)
+            {
+                Debug.WriteLine("bfgffgnf");
+            }
+
+            Debug.WriteLine(speechRecognitionResult);
 
             //psaxneis epafes
             if (msg == 0)
             {
-                if (speechRecognitionResult.Text != "")
+                if (speechRecognitionResult.Text !="")
                 {
                     Name = speechRecognitionResult.Text;
                     //start2();
@@ -209,17 +245,19 @@ namespace J.A.R.V.I.S
             }
             else if (msg == 1)
             {
-                if (speechRecognitionResult.Text != "")
+                if (speechRecognitionResult.Text !="")
                 {
                     Message = speechRecognitionResult.Text;
 
                     jarvis();
+                    return;
                 }
-                else
+               else
                 {
                     await Task.Delay(2000);
-
-                    Start2();
+                   // jarvis();
+                   Start3();
+                    return;
                 }
             }
             else if (msg == 2)
@@ -267,12 +305,12 @@ namespace J.A.R.V.I.S
             var synth = new Windows.Media.SpeechSynthesis.SpeechSynthesizer();
 
             // Generate the audio stream from plain text.
-            SpeechSynthesisStream stream = await synth.SynthesizeTextToStreamAsync("Hello");
-            textBox.Text = "Hello";
+            SpeechSynthesisStream stream = await synth.SynthesizeTextToStreamAsync("Hello Master");
+            textBox.Text = "Hello Master";
             // Send the stream to the media object.
-            mediaElement.SetSource(stream, stream.ContentType);
-            mediaElement.Play();
-            msg = 1;
+            mediaElement.SetSource(stream, stream.ContentType); msg = 1;
+            mediaElement.Play(); 
+
         }
 
         public async void Start4()
@@ -301,12 +339,12 @@ namespace J.A.R.V.I.S
             var synth = new Windows.Media.SpeechSynthesis.SpeechSynthesizer();
 
             // Generate the audio stream from plain text.
-            SpeechSynthesisStream stream = await synth.SynthesizeTextToStreamAsync("Tell me whats wrong");
-            textBox.Text = "Tell me whats wrong";
+            SpeechSynthesisStream stream = await synth.SynthesizeTextToStreamAsync("Command me");
+            textBox.Text = "Command me";
             // Send the stream to the media object.
-            mediaElement.SetSource(stream, stream.ContentType);
+            mediaElement.SetSource(stream, stream.ContentType);msg = 1;
             mediaElement.Play();
-            msg = 1;
+            
         }
 
 

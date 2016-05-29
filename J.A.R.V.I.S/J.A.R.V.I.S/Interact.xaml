@@ -7,15 +7,16 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource JumpListDefaultEnabledBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <MediaElement Name="mediaElement" Margin="10,406.667,349,19" Grid.Row="2"></MediaElement>
-        <TextBox x:Name="textBox" Grid.Row="0" HorizontalAlignment="Center" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center"/>
-        <TextBox x:Name="textBox1" Grid.Row="1" HorizontalAlignment="Center" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center"/>
-        <TextBox x:Name="textBox2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="J.A.R.V.I.S" VerticalAlignment="Top" BorderThickness="0" Background="#FF0BFF16" FontSize="30"/>
+        <TextBlock x:Name="textBox" Grid.Row="0" HorizontalAlignment="Center" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center"  FontStyle="Italic" Foreground="#FFFF0202" FontSize="20" SelectionHighlightColor="#00000000"/>
+        <TextBlock x:Name="textBox1" Grid.Row="1" HorizontalAlignment="Center" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Foreground="#FFD31906" FontStyle="Italic" FontSize="20"/>
+        <TextBlock x:Name="textBox2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="J.A.R.V.I.S SAYS" VerticalAlignment="Top" FontSize="48" Foreground="#FF3EFF06" SelectionHighlightColor="Black" FontStyle="Italic" FontWeight="SemiLight"/>
+        <TextBlock x:Name="textBox3" HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" Text="USER SAYS" VerticalAlignment="Top"  FontSize="48" Foreground="#FF3EFF06"  SelectionHighlightColor="Black" FontStyle="Italic" FontWeight="SemiLight"/>
 
     </Grid>
 </Page>

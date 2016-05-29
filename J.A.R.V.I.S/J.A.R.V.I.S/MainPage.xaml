@@ -11,13 +11,15 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="3*"/>
+            
         </Grid.RowDefinitions>
 
+        <Image x:Name="image"   Source="Assets/jarvis.jpg"  Grid.Row="0" Grid.RowSpan="2"  Stretch="Fill" />
         <MediaElement Name="mediaElement" Margin="10,406.667,349,19" Grid.Row="2"></MediaElement>
-        <Button x:Name="button1" Content="Interact with J.A.R.V.I.S" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="60" Click="interact"/>
-        <Button x:Name="button2" Content="Let J.A.R.V.I.S send an Email " Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="60" Click="email"/>
-        <MediaElement x:Name="mediaElement1" HorizontalAlignment="Center" Grid.Row="2" Stretch="Fill" VerticalAlignment="Center" Source="Assets/video.mp4"/>
+        <Button x:Name="button1" Content="Interact with J.A.R.V.I.S" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="60" Click="interact" BorderThickness="0" BorderBrush="Lime" Foreground="#FF080808" FontSize="20" FontStyle="Italic" FontWeight="Medium" Background="#FF1DFF00"/>
+        <Button x:Name="button2" Content="Let J.A.R.V.I.S send an Email " Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="60" Click="email" BorderThickness="0" Background="#FFE68B1D" FontWeight="Medium" FontStyle="Italic" FontSize="20"/>
+       
+        
 
 
     </Grid>
